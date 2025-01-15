@@ -1,0 +1,113 @@
+run_config:
+  name: Web Application
+  author: Group 4 Team MLDS-423
+  version: default
+  description: Extract three models for Flight Delay Prediction using Regression.
+  dependencies: requirements.txt
+  data_source: Kaggle Dataset + Weather API Data.
+
+column_order:
+  num_features: ["Quarter", "Month", "DayOfWeek", "dept-elevation_ft", "arr-elevation_ft", 
+                "Route_Popularity", "Distance_Final", "Wind_Speed_mph", "Wind_Gust_mph", "Visibility_miles", 
+                "tempF", "precip_in", "daily_snow_in", "dep_time"]
+  features: ["Quarter", "Month", "DayOfWeek", "dept-elevation_ft", "arr-elevation_ft", 
+  "Route_Popularity", "Distance_Final", "Wind_Speed_mph", "Wind_Gust_mph", "Visibility_miles", 
+  "tempF", "precip_in", "daily_snow_in", "dep_time", 
+  "Air Wisconsin Airlines Corp", "Alaska Airlines Inc.", "Allegiant Air", "American Airlines Inc.", 
+  "Capital Cargo International", "Comair Inc.", "Commutair Aka Champlain Enterprises, Inc.", 
+  "Delta Air Lines Inc.", "Endeavor Air Inc.", "Envoy Air", "Frontier Airlines Inc.", 
+  "GoJet Airlines, LLC d/b/a United Express", "Horizon Air", "JetBlue Airways", "Mesa Airlines Inc.", 
+  "Republic Airlines", "SkyWest Airlines Inc.", "Southwest Airlines Co.", "Spirit Air Lines", 
+  "United Air Lines Inc.", 'dept-type_ohe_closed', 'dept-type_ohe_large_airport', 'dept-type_ohe_medium_airport',
+  'dept-type_ohe_small_airport', 'arr-type_ohe_closed', 'arr-type_ohe_large_airport', 'arr-type_ohe_medium_airport',
+  'arr-type_ohe_small_airport']
+
+features:
+  categorical_features:
+    - "Airline"
+    - "Departure Type"
+    - "Arrival Type"
+
+default_values:
+  numerical:
+    "Departure Elevation (ft)": 107
+    "Arrival Elevation (ft)": 607
+    "Route Popularity": 2526
+    "Distance (Final)": 754.00
+    "Wind Speed (mph)": 9
+    "Wind Gust (mph)": 14
+    "Visibility (miles)": 3
+    "Temperature (F)": 46
+    "Precipitation (in)": 0
+    "Daily Snow (in)": 0
+    "Departure Time": 500
+
+  categorical:
+    Airline:
+      - "Air Wisconsin Airlines Corp"
+      - "Alaska Airlines Inc."
+      - "Allegiant Air"
+      - "American Airlines Inc."
+      - "Capital Cargo International"
+      - "Comair Inc."
+      - "Commutair Aka Champlain Enterprises, Inc."
+      - "Delta Air Lines Inc."
+      - "Endeavor Air Inc."
+      - "Envoy Air"
+      - "Frontier Airlines Inc."
+      - "GoJet Airlines, LLC d/b/a United Express"
+      - "Horizon Air"
+      - "JetBlue Airways"
+      - "Mesa Airlines Inc."
+      - "Republic Airlines"
+      - "SkyWest Airlines Inc."
+      - "Southwest Airlines Co."
+      - "Spirit Air Lines"
+      - "United Air Lines Inc."
+    Departure Type:
+      - "Closed"
+      - "Large Airport"
+      - "Medium Airport"
+      - "Small Airport"
+    Arrival Type:
+      - "Closed"
+      - "Large Airport"
+      - "Medium Airport"
+      - "Small Airport"
+
+mappings:
+  categorical_feature_mapping:
+    Closed:
+      Departure Type: "dept-type_ohe_closed"
+      Arrival Type: "arr-type_ohe_closed"
+    Large Airport:
+      Departure Type: "dept-type_ohe_large_airport"
+      Arrival Type: "arr-type_ohe_large_airport"
+    Medium Airport:
+      Departure Type: "dept-type_ohe_medium_airport"
+      Arrival Type: "arr-type_ohe_medium_airport"
+    Small Airport:
+      Departure Type: "dept-type_ohe_small_airport"
+      Arrival Type: "arr-type_ohe_small_airport"
+  numerical_feature_mapping:
+    "Departure Elevation (ft)": "dept-elevation_ft"
+    "Arrival Elevation (ft)": "arr-elevation_ft"
+    "Route Popularity": "Route_Popularity"
+    "Distance (Final)": "Distance_Final"
+    "Wind Speed (mph)": "Wind_Speed_mph"
+    "Wind Gust (mph)": "Wind_Gust_mph"
+    "Visibility (miles)": "Visibility_miles"
+    "Temperature (F)": "tempF"
+    "Precipitation (in)": "precip_in"
+    "Daily Snow (in)": "daily_snow_in"
+    "Departure Time": "dep_time"
+
+aws:
+  bucket_name: group4-final-project
+  rf_key: model-artifacts/rf_model_object.joblib
+  rf_path: rf_model_objcet.joblib
+  gb_key: model-artifacts/gbm_model_object.joblib
+  gb_path: gbm_model.joblib
+  pcr_key: model-artifacts/pcr_model_object.joblib
+  pcr_path: trained_pcr.joblib
+  prefix: experiments

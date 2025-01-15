@@ -1,0 +1,51 @@
+run_config:
+  name: flight-delay
+  author: Alina Gu
+  version: default
+  description: Predict flight delay time
+  dependencies: requirements.txt
+
+train_model:
+  features: ["Quarter", "Month", "DayOfWeek", "dept-elevation_ft", "arr-elevation_ft", 
+  "Route_Popularity", "Distance_Final", "Wind_Speed_mph", "Wind_Gust_mph", "Visibility_miles", 
+  "tempF", "precip_in", "daily_snow_in", "dep_time", 
+  "Air Wisconsin Airlines Corp", "Alaska Airlines Inc.", "Allegiant Air", "American Airlines Inc.", 
+  "Capital Cargo International", "Comair Inc.", "Commutair Aka Champlain Enterprises, Inc.", 
+  "Delta Air Lines Inc.", "Endeavor Air Inc.", "Envoy Air", "Frontier Airlines Inc.", 
+  "GoJet Airlines, LLC d/b/a United Express", "Horizon Air", "JetBlue Airways", "Mesa Airlines Inc.", 
+  "Republic Airlines", "SkyWest Airlines Inc.", "Southwest Airlines Co.", "Spirit Air Lines", 
+  "United Air Lines Inc.", 'dept-type_ohe_closed', 'dept-type_ohe_large_airport', 'dept-type_ohe_medium_airport',
+  'dept-type_ohe_small_airport', 'arr-type_ohe_closed', 'arr-type_ohe_large_airport', 'arr-type_ohe_medium_airport',
+  'arr-type_ohe_small_airport']
+  response: "DepDelayMinutes"
+  PCR:
+    n_components: mle
+    solver: full
+  RF:
+    n_estimators: 100
+    max_depth: 3
+    random_state: 42
+    features: 
+  GBM:
+    n_estimators: 100
+    learning_rate: 0.1
+    max_depth: 3
+    random_state: 42
+
+score_model:
+  features: ["Quarter", "Month", "DayOfWeek", "dept-elevation_ft", "arr-elevation_ft", 
+  "Route_Popularity", "Distance_Final", "Wind_Speed_mph", "Wind_Gust_mph", "Visibility_miles", 
+  "tempF", "precip_in", "daily_snow_in", "dep_time", 
+  "Air Wisconsin Airlines Corp", "Alaska Airlines Inc.", "Allegiant Air", "American Airlines Inc.", 
+  "Capital Cargo International", "Comair Inc.", "Commutair Aka Champlain Enterprises, Inc.", 
+  "Delta Air Lines Inc.", "Endeavor Air Inc.", "Envoy Air", "Frontier Airlines Inc.", 
+  "GoJet Airlines, LLC d/b/a United Express", "Horizon Air", "JetBlue Airways", "Mesa Airlines Inc.", 
+  "Republic Airlines", "SkyWest Airlines Inc.", "Southwest Airlines Co.", "Spirit Air Lines", 
+  "United Air Lines Inc.", 'dept-type_ohe_closed', 'dept-type_ohe_large_airport', 'dept-type_ohe_medium_airport',
+  'dept-type_ohe_small_airport', 'arr-type_ohe_closed', 'arr-type_ohe_large_airport', 'arr-type_ohe_medium_airport',
+  'arr-type_ohe_small_airport']
+  response: "DepDelayMinutes"
+
+aws:
+  upload: True
+  bucket_name: group4-final-project

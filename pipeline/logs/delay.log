@@ -1,0 +1,16 @@
+05/25/2024 03:20:29 PM delay        INFO     ml_pipeline.py:35 - Configuration file loaded from config/default-config.yaml
+05/25/2024 03:20:36 PM delay        INFO     train_model.py:19 - Train test split created
+05/25/2024 03:20:38 PM delay        INFO     train_model.py:45 - PCR model created
+05/25/2024 03:20:38 PM delay        INFO     train_model.py:137 - Model saved to runs/1716668429/pcr_model_object.pkl
+05/25/2024 03:21:13 PM delay        INFO     train_model.py:74 - Random Forest model created
+05/25/2024 03:21:13 PM delay        INFO     train_model.py:137 - Model saved to runs/1716668429/rf_model_object.pkl
+05/25/2024 03:22:06 PM delay        INFO     train_model.py:105 - GBM created
+05/25/2024 03:22:06 PM delay        INFO     train_model.py:137 - Model saved to runs/1716668429/gbm_model_object.pkl
+05/25/2024 03:22:06 PM delay        INFO     score_model.py:35 - Model scores saved to runs/1716668429/scores_pcr.csv
+05/25/2024 03:22:06 PM delay        INFO     score_model.py:35 - Model scores saved to runs/1716668429/scores_rf.csv
+05/25/2024 03:22:07 PM delay        INFO     score_model.py:35 - Model scores saved to runs/1716668429/scores_gbm.csv
+05/25/2024 03:22:07 PM delay        INFO     evaluate_performance.py:57 - Model metrics saved to runs/1716668429/metrics_pcr.yaml
+05/25/2024 03:22:07 PM delay        INFO     evaluate_performance.py:57 - Model metrics saved to runs/1716668429/metrics_rf.yaml
+05/25/2024 03:22:07 PM delay        INFO     evaluate_performance.py:57 - Model metrics saved to runs/1716668429/metrics_gbm.yaml
+05/25/2024 03:22:08 PM delay        INFO     aws_utils.py:56 - File uploaded to S3
+05/25/2024 03:22:08 PM delay        INFO     ml_pipeline.py:95 - File uploaded to S3
